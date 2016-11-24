@@ -6,8 +6,22 @@
 #define ANTCC_VARIABLESYMBOL_H
 
 
-class VariableSymbol {
+#include "Property.h"
 
+class VariableSymbol {
+    Property *property;
+    string name;
+public:
+    // declare a variable
+    VariableSymbol(string _name,TypeSymbol* type,int dimension);
+    VariableSymbol(string _name,TypeSymbol& type,int dimension);
+    VariableSymbol(string _name);
+    VariableSymbol();
+    void setProperty(Property& _property);
+
+    // determine a variable
+    bool isInteger();
+    string getName();
 };
 
 

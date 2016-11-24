@@ -27,7 +27,8 @@ class Scope {
     public:
     bool foundVariable(string variable);
     bool contains(string variable);
-    bool putVariable(string variable);
+    VariableSymbol* putVariable(string variable);
+    VariableSymbol* putVariable(VariableSymbol& variable);
 };
 
 

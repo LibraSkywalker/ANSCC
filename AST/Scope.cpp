@@ -6,7 +6,7 @@
 
 
 #define SUCCESS true
-#define FAILURE false
+#define FAILURE nullptr
 
 bool Scope::accept(){
     for(auto statment : statements){
@@ -24,12 +24,21 @@ bool Scope::foundVariable(string variable){
         return parentScope->foundVariable(variable);
 }
 
-bool Scope::putVariable(string variable) {
+VariableSymbol* Scope::putVariable(string variable) {
     if (contains(variable))
         return FAILURE;
     else {
-        variableDictionary[variable] = new VariableSymbol();
-        return SUCCESS;
+        variableDictionary[variable] = new VariableSymbol(variable);
+        return variableDictionary[variable];
+    }
+}
+
+VariableSymbol* Scope::putVariable(VariableSymbol &variable) {
+    if (contains(variable.getName()))
+        return FAILURE;
+    else{
+        variableDictionary[variable.getName()] = &variable;
+        return &variable;
     }
 }
 
